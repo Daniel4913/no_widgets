@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prosty Timer</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-components-web/14.2.0/material-components-web.min.css">
+  <style>
+    .card {
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+      border-radius: 4px;
+      padding: 16px;
+      background-color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="mdc-card card">
+    <h1 class="mdc-typography--headline6 mb-6">Prosty Timer</h1>
+    <div id="timer" class="mdc-typography--subtitle1 mb-4"></div>
+    <div class="mdc-card__actions">
+      <button id="startBtn" class="mdc-button mdc-button--outlined mdc-button--dense">
+        <span class="material-icons mdc-button__icon" aria-hidden="true">play_arrow</span>
+        Start
+      </button>
+      <button id="pauseBtn" class="mdc-button mdc-button--outlined mdc-button--dense">
+        <span class="material-icons mdc-button__icon" aria-hidden="true">pause</span>
+        Pauza
+      </button>
+      <button id="resetBtn" class="mdc-button mdc-button--outlined mdc-button--dense">
+        <span class="material-icons mdc-button__icon" aria-hidden="true">restore</span>
+        Reset
+      </button>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/material-components-web/14.2.0/material-components-web.min.js"></script>
+  <script>
+    const timerElement = document.getElementById('timer');
+    const startButton = document.getElementById('startBtn');
+    const pauseButton = document.getElementById('pauseBtn');
+    const resetButton = document.getElementById('resetBtn');
+    let startTime;
+    let elapsedTime = 0;
+    let timerInterval;
+
+    function formatTime(ms) {
+      const days = Math.floor(ms / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((ms % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((ms % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((ms % (100
