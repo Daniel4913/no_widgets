@@ -1,1 +1,45 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+  <title>Timer</title>
+</head>
+<body>
+  <div class="container mx-auto mt-5">
+    <h1 class="text-4xl mb-5">Timer</h1>
+    <div id="timer" class="text-2xl mb-5"></div>
+    <div>
+      <button id="start" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2">Start</button>
+      <button id="pause" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded mr-2">Pauza</button>
+      <button id="reset" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Reset</button>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.4/dist/dayjs.min.js"></script>
+  <script>
+    // Inicjalizacja zmiennych
+    let startTime = null;
+    let intervalId = null;
+    let pausedTime = 0;
+
+    // Funkcja wyświetlająca pozostały czas
+    function displayTime() {
+      const currentTime = dayjs();
+      const diff = currentTime.diff(startTime) + pausedTime;
+      const duration = dayjs.duration(diff);
+      const days = duration.days();
+      const hours = duration.hours();
+      const minutes = duration.minutes();
+      const seconds = duration.seconds();
+      const milliseconds = duration.milliseconds();
+
+      const timerElement = document.getElementById('timer');
+      timerElement.textContent = `Dni: ${days}, Godziny: ${hours}, Minuty: ${minutes}, Sekundy: ${seconds}, Milisekundy: ${milliseconds}`;
+    }
+
+    // Funkcja startująca tajmer
+    function startTimer() {
+     
